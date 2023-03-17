@@ -1,8 +1,0 @@
-.half-container {
-  background-color: rgb(218, 194, 194);
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

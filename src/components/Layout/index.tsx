@@ -1,11 +1,18 @@
 import Link from "next/link";
+import { FC, ReactNode } from "react";
 import Navbar from "../Navbar";
+import Resume from "../Resume";
 
-export default function Layout({ children }: any) {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const HomeLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="half-container">{children}</div>
+      <div className="content-container">{children}</div>
     </>
   );
-}
+};
+export default HomeLayout;

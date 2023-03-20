@@ -4,7 +4,7 @@ export default function useFormData(pages: ReactElement[]) {
   const [indexPage, setIndexPage] = useState(0);
   function goNext() {
     setIndexPage((prevIndx) => {
-      if (prevIndx >= pages.length) return prevIndx;
+      if (prevIndx >= pages.length - 1) return prevIndx;
       return prevIndx + 1;
     });
   }

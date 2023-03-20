@@ -5,6 +5,7 @@ import useFormData from "@/hooks/useFormData";
 import ContactForm from "@/components/FormPages/ContactForm";
 import Education from "@/components/FormPages/Education";
 import Resume from "@/components/Resume";
+import { Button } from "@mui/material";
 
 export default function WorkExperience() {
   const { updateField, data } = useContext(DataContext);
@@ -14,19 +15,19 @@ export default function WorkExperience() {
   ]);
 
   return (
-    <>
+    <div className="builder-container">
       <form className="form-half">
         {page}
-        <button type="button" onClick={goBack}>
+        <Button type="button" onClick={goBack} variant="contained">
           Back
-        </button>
-        <button type="button" onClick={goNext}>
+        </Button>
+        <Button type="button" onClick={goNext} variant="contained">
           Next
-        </button>
+        </Button>
       </form>
       <div className="resume-half">
         <Resume />
       </div>
-    </>
+    </div>
   );
 }

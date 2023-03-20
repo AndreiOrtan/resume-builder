@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { Button } from "@mui/material";
+import styles from "./HomeContent.module.css";
 
 const HomeContent = () => {
-  return <Link href="/builder">Start buiding your resume</Link>;
+  return (
+    <div className={styles.homeModule}>
+      <Link href="/builder">
+        <Button variant="contained">Start building your resume</Button>
+      </Link>
+    </div>
+  );
 };
 export default HomeContent;

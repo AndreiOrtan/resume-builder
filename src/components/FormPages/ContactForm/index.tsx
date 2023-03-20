@@ -1,4 +1,6 @@
 import { FormPages, FormData } from "@/types";
+import { TextField } from "@mui/material";
+
 export default function ContactForm({
   updateField,
   firstName,
@@ -6,17 +8,16 @@ export default function ContactForm({
 }: FormPages & FormData) {
   return (
     <div>
-      <label>First Name:</label>
-      <input
-        type="text"
-        placeholder="First Name"
+      <TextField
+        label="First Name"
+        variant="outlined"
         value={firstName}
         onChange={(e) => updateField({ firstName: e.target.value })}
       />
-      <label>Last Name:</label>
-      <input
-        type="text"
-        placeholder="Last Name"
+      <TextField
+        id="outlined-basic"
+        label="Last Name"
+        variant="outlined"
         value={lastName}
         onChange={(e) => updateField({ lastName: e.target.value })}
       />

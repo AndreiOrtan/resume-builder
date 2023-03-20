@@ -6,3 +6,7 @@
   border-left: 1px black solid;
   background-color: rgb(155, 115, 115);
 }
+.builder-container {
+  width: 100%;
+  display: flex;
+}

@@ -14,6 +14,9 @@ export default function useFormData(pages: ReactElement[]) {
       return prevIndx - 1;
     });
   }
+  function reset() {
+    setIndexPage(0);
+  }
 
-  return { page: pages[indexPage], goNext, goBack };
+  return { page: pages[indexPage], goNext, goBack, reset, indexPage };
 }

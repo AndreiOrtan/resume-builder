@@ -7,7 +7,7 @@ export default function ContactForm({
   lastName,
 }: FormPages & FormData) {
   return (
-    <div>
+    <div className="inputs-container">
       <TextField
         label="First Name"
         variant="outlined"
@@ -15,7 +15,6 @@ export default function ContactForm({
         onChange={(e) => updateField({ firstName: e.target.value })}
       />
       <TextField
-        id="outlined-basic"
         label="Last Name"
         variant="outlined"
         value={lastName}

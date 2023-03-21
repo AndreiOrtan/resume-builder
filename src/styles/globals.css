@@ -24,3 +24,13 @@ a {
     color-scheme: dark;
   }
 }
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inputs-container div {
+  margin-bottom: 10px;
+  width: 100%;
+}

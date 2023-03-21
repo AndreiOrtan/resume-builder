@@ -1,12 +1,18 @@
 .form-half {
-  width: 50%;
+  min-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .resume-half {
   width: 50%;
-  border-left: 1px black solid;
-  background-color: rgb(155, 115, 115);
+  /* border-left: 1px black solid; */
+  background-color: rgb(240, 247, 255);
 }
 .builder-container {
   width: 100%;
   display: flex;
+}
+.form-half form {
+  width: 80%;
 }

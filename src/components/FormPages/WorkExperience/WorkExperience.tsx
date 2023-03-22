@@ -5,7 +5,7 @@ export default function WorkExperience({ data, updateField }: FormPages) {
   const { workExperience } = data;
 
   return (
-    <div>
+    <div className="inputs-container">
       {workExperience.map((experience, i) => {
         return (
           <div key={i}>

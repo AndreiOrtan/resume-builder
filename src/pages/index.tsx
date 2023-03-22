@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import HomeContent from "@/components/HomeContent";
-import Link from "next/link";
+import { useContext } from "react";
+import { DataContext } from "@/context/DataContext";
+import WorkExperience from "@/components/FormPages/WorkExperience";
 
 export default function Home() {
   return (

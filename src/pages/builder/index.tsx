@@ -8,23 +8,22 @@ import Resume from "@/components/Resume";
 import {
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
   Step,
   StepLabel,
   Stepper,
   Typography,
 } from "@mui/material";
+import WorkExperience from "@/components/FormPages/WorkExperience";
 
-const steps = ["Contact", "Education", "Education2"];
+const steps = ["Contact", "Education", "Work Experience"];
 
-export default function WorkExperience() {
+export default function UserInputs() {
   const { updateField, data } = useContext(DataContext);
+
   const { page, goNext, goBack, indexPage, reset } = useFormData([
-    <ContactForm updateField={updateField} {...data} />,
-    <Education updateField={updateField} {...data} />,
-    <Education updateField={updateField} {...data} />,
+    <ContactForm updateField={updateField} data={data} />,
+    <Education updateField={updateField} data={data} />,
+    <WorkExperience updateField={updateField} data={data} />,
   ]);
 
   return (

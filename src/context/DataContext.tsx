@@ -1,5 +1,5 @@
 import { createContext, FC, ReactNode, useState } from "react";
-import { FormData, FormPages } from "@/types";
+import { FormData, FormPages, IWorkExperience } from "@/types";
 
 interface IDataContext {
   updateField: (fields: {}) => void;
@@ -9,23 +9,24 @@ const DEFAULT_DATA = {
   lastName: "",
   firstName: "",
   university: "",
-  address: "",
-  jobTitle: "",
+  workExperience: [{ company: "", jobTitle: "" }],
 };
 const defaultValues = {
   updateField: () => {},
   data: DEFAULT_DATA,
 };
 
-export const DataContext = createContext<IDataContext>(defaultValues);
+export const DataContext = createContext<FormPages>(defaultValues);
 
 interface ProviderProps {
   children: ReactNode;
 }
 export const DataProvider: FC<ProviderProps> = ({ children }) => {
-  const [data, setData] = useState(DEFAULT_DATA);
+  console.log(children);
+  const [data, setData] = useState<FormData>(defaultValues.data);
+  console.log(data);
 
-  function updateField(fields: Partial<IDataContext>) {
+  function updateField(fields: Partial<FormData>) {
     setData((prevData) => {
       return { ...prevData, ...fields };
     });

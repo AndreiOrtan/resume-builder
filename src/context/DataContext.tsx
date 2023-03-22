@@ -22,9 +22,7 @@ interface ProviderProps {
   children: ReactNode;
 }
 export const DataProvider: FC<ProviderProps> = ({ children }) => {
-  console.log(children);
   const [data, setData] = useState<FormData>(defaultValues.data);
-  console.log(data);
 
   function updateField(fields: Partial<FormData>) {
     setData((prevData) => {

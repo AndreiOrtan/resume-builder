@@ -1,12 +1,31 @@
+import useWorkExperience from "@/hooks/useWorkExperience";
 import { FormPages, FormData, IWorkExperience } from "@/types";
-import { TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import Link from "next/link";
 
 export default function WorkExperience({ data, updateField }: FormPages) {
-  const { workExperience } = data;
-
+  //   const { workExperience } = data;
+  const { workExperience, addExperience } = useWorkExperience();
   return (
     <div className="inputs-container">
-      {workExperience.map((experience, i) => {
+      <Button variant="contained" onClick={addExperience}>
+        {/* <Link href="/builder/work-experience">Add work place</Link> */}
+        Add work place
+      </Button>
+
+      <div className="test">
+        {workExperience &&
+          workExperience.map((exprr, i) => {
+            return (
+              <Box key={i}>
+                {exprr.id}
+                {exprr.company}
+                {exprr.jobTitle}
+              </Box>
+            );
+          })}
+      </div>
+      {/* {workExperience.map((experience, i) => {
         return (
           <div key={i}>
             <TextField
@@ -34,7 +53,7 @@ export default function WorkExperience({ data, updateField }: FormPages) {
             />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }

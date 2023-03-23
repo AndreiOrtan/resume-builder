@@ -9,14 +9,14 @@ export default function WorkExperience() {
     company: "",
     jobTitle: "",
   });
-  const { workExperience, addExperience } = useWorkExperience();
-  console.log(workExperience);
+  const { addExperience } = useWorkExperience();
+
   return (
     <div className="inputs-container">
       <TextField
         label="Company"
         variant="outlined"
-        value={jobExpToAdd?.company}
+        value={jobExpToAdd.company}
         onChange={(e) =>
           setJobExpToAdd((prev) => {
             return { ...prev, company: e.target.value };
@@ -26,7 +26,7 @@ export default function WorkExperience() {
       <TextField
         label="Job title"
         variant="outlined"
-        value={jobExpToAdd?.jobTitle}
+        value={jobExpToAdd.jobTitle}
         onChange={(e) =>
           setJobExpToAdd((prev) => {
             return { ...prev, jobTitle: e.target.value };

@@ -2,6 +2,7 @@ import {
   addWorkExperience,
   getWorkExperience,
 } from "@/services/experience-api";
+import { IWorkExperience } from "@/types";
 import { useState } from "react";
 
 interface IUseWorkExperience {
@@ -15,10 +16,16 @@ export default function useWorkExperience() {
     getWorkExperience()
   );
 
-  function addExperience() {
+  function addExperience(fields: IWorkExperience) {
     setWorkExperience((prevExperience) => {
-      const objToPush = { id: `${Math.random()}`, company: "", jobTitle: "" };
-      if (!prevExperience) return [objToPush];
+      const objToPush = {
+        id: `${Math.random()}`,
+        ...fields,
+      };
+      if (!prevExperience) {
+        addWorkExperience([objToPush]);
+        return [objToPush];
+      }
       const newExperience = [...prevExperience, objToPush];
       addWorkExperience(newExperience);
       return newExperience;
@@ -27,5 +34,3 @@ export default function useWorkExperience() {
 
   return { addExperience, workExperience };
 }
-
-const test = [{ asd1: 2 }, { asd2: 3 }];

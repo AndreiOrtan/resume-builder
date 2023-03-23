@@ -8,18 +8,27 @@ export default function WorkExperience({ data, updateField }: FormPages) {
   const { workExperience, addExperience } = useWorkExperience();
   return (
     <div className="inputs-container">
-      <Button variant="contained" onClick={addExperience}>
-        {/* <Link href="/builder/work-experience">Add work place</Link> */}
-        Add work place
+      <Button variant="contained">
+        <Link href="/builder/work-experience/new">Add work place</Link>
       </Button>
 
       <div className="test">
         {workExperience &&
           workExperience.map((exprr, i) => {
             return (
-              <Box key={i}>
+              <Box
+                key={exprr.id}
+                sx={{
+                  width: "100%",
+                  minHeight: "min-content",
+                  backgroundColor: "primary.dark",
+                }}
+                onClick={(e) => console.log(e.target)}
+              >
                 {exprr.id}
+                <br />
                 {exprr.company}
+                <br />
                 {exprr.jobTitle}
               </Box>
             );

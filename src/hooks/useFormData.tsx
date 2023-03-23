@@ -1,8 +1,13 @@
 import { getFormIndexPage, saveFormIndexPage } from "@/services/formPage-api";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 export default function useFormData(pages: ReactElement[]) {
-  const [indexPage, setIndexPage] = useState<number>(getFormIndexPage() | 0);
+  const [indexPage, setIndexPage] = useState<number>(0);
+
+  useEffect(() => {
+    if (!getFormIndexPage()) return;
+    setIndexPage(getFormIndexPage());
+  }, []);
 
   function goNext() {
     setIndexPage((prevIndx) => {

@@ -1,10 +1,10 @@
 import { IWorkExperience } from "@/types";
 
-const FAVORITES_KEY = "WORK_EXPERIENCE";
+const EXPERIENCE_KEY = "WORK_EXPERIENCE";
 
 export const getWorkExperience = () => {
   try {
-    const stringifiedValue = localStorage.getItem(FAVORITES_KEY);
+    const stringifiedValue = localStorage.getItem(EXPERIENCE_KEY);
 
     if (stringifiedValue) return JSON.parse(stringifiedValue) || [];
   } catch (error) {
@@ -13,5 +13,5 @@ export const getWorkExperience = () => {
 };
 
 export const addWorkExperience = (items: IWorkExperience[]) => {
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(items));
+  localStorage.setItem(EXPERIENCE_KEY, JSON.stringify(items));
 };

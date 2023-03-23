@@ -1,8 +1,8 @@
-const FAVORITES_KEY = "FORM_PAGE_INDEX";
+const PAGE_INDEX_KEY = "FORM_PAGE_INDEX";
 
 export const getFormIndexPage = () => {
   try {
-    const stringifiedValue = localStorage.getItem(FAVORITES_KEY);
+    const stringifiedValue = localStorage.getItem(PAGE_INDEX_KEY);
 
     if (stringifiedValue) return JSON.parse(stringifiedValue) || [];
   } catch (error) {
@@ -11,5 +11,5 @@ export const getFormIndexPage = () => {
 };
 
 export const saveFormIndexPage = (num: number) => {
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(num));
+  localStorage.setItem(PAGE_INDEX_KEY, JSON.stringify(num));
 };

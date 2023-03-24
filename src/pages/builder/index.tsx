@@ -23,7 +23,7 @@ export default function UserInputs() {
   const { page, goNext, goBack, indexPage, reset } = useFormData([
     <ContactForm updateField={updateField} data={data} />,
     <Education updateField={updateField} data={data} />,
-    <WorkExperience updateField={updateField} data={data} />,
+    <WorkExperience />,
   ]);
 
   return (

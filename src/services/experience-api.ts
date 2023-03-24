@@ -12,6 +12,6 @@ export const getWorkExperience = () => {
   }
 };
 
-export const addWorkExperience = (items: IWorkExperience[]) => {
+export const saveWorkExperience = (items: IWorkExperience[]) => {
   localStorage.setItem(EXPERIENCE_KEY, JSON.stringify(items));
 };

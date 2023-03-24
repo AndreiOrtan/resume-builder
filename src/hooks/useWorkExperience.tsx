@@ -1,5 +1,5 @@
 import {
-  addWorkExperience,
+  saveWorkExperience,
   getWorkExperience,
 } from "@/services/experience-api";
 import { IWorkExperience } from "@/types";
@@ -23,14 +23,21 @@ export default function useWorkExperience() {
         ...fields,
       };
       if (!prevExperience) {
-        addWorkExperience([objToPush]);
+        saveWorkExperience([objToPush]);
         return [objToPush];
       }
-      const newExperience = [...prevExperience, objToPush];
-      addWorkExperience(newExperience);
-      return newExperience;
+      const newExperiences = [...prevExperience, objToPush];
+      saveWorkExperience(newExperiences);
+      return newExperiences;
     });
   }
+  function deleteExperience(id: string) {
+    const newExperiences = workExperience.filter((experience) => {
+      return experience.id !== id;
+    });
+    saveWorkExperience(newExperiences);
+    setWorkExperience(newExperiences);
+  }
 
-  return { addExperience, workExperience };
+  return { addExperience, workExperience, deleteExperience };
 }

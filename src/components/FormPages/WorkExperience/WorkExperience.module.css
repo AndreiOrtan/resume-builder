@@ -1,0 +1,16 @@
+.tools {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.tools svg {
+  /* width: 40px; */
+  font-size: 20px;
+  background-color: #e7ebef;
+  border-radius: 15%;
+  box-shadow: 2px 2px 5px #888888;
+}
+
+.tools a {
+  margin: 5px;
+}

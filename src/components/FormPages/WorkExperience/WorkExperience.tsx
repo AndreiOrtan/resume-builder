@@ -1,68 +1,50 @@
 import useWorkExperience from "@/hooks/useWorkExperience";
-import { FormPages, FormData, IWorkExperience } from "@/types";
-import { Box, Button, TextField } from "@mui/material";
+import { FormPages } from "@/types";
+import { Box, Button } from "@mui/material";
 import Link from "next/link";
+import styles from "./WorkExperience.module.css";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
-export default function WorkExperience({ data, updateField }: FormPages) {
-  //   const { workExperience } = data;
-  const { workExperience, addExperience } = useWorkExperience();
+export default function WorkExperience() {
+  const { workExperience, deleteExperience } = useWorkExperience();
   return (
     <div className="inputs-container">
-      <Button variant="contained">
+      <Button variant="contained" title="adddddd">
         <Link href="/builder/work-experience/new">Add work place</Link>
       </Button>
 
-      <div className="test">
+      <div className="experience-container">
         {workExperience &&
-          workExperience.map((exprr, i) => {
+          workExperience.map((experience, i) => {
             return (
               <Box
-                key={exprr.id}
+                key={experience.id}
                 sx={{
-                  width: "100%",
+                  width: 100,
                   minHeight: "min-content",
-                  backgroundColor: "primary.dark",
+                  position: "relative",
+                  border: "0.5px solid gray",
                 }}
                 onClick={(e) => console.log(e.target)}
               >
-                {exprr.id}
-                <br />
-                {exprr.company}
-                <br />
-                {exprr.jobTitle}
+                <div>
+                  {experience.company}
+                  <br />
+                  {experience.jobTitle}
+                </div>
+                <span className={styles.tools}>
+                  <Link href={"builder/work-experience/edit/" + experience.id}>
+                    <ModeEditOutlineOutlinedIcon />
+                  </Link>
+                  <Link href="" onClick={() => deleteExperience(experience.id)}>
+                    <DeleteOutlineOutlinedIcon />
+                  </Link>
+                </span>
               </Box>
             );
           })}
       </div>
-      {/* {workExperience.map((experience, i) => {
-        return (
-          <div key={i}>
-            <TextField
-              label="Company"
-              variant="outlined"
-              value={experience.company}
-              onChange={(e) =>
-                updateField({
-                  workExperience: workExperience.map((expr) => {
-                    return { ...expr, company: e.target.value };
-                  }),
-                })
-              }
-            />
-            <TextField
-              label="Job Title"
-              value={experience.jobTitle}
-              onChange={(e) =>
-                updateField({
-                  workExperience: workExperience.map((expr) => {
-                    return { ...expr, jobTitle: e.target.value };
-                  }),
-                })
-              }
-            />
-          </div>
-        );
-      })} */}
     </div>
   );
 }

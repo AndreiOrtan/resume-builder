@@ -29,8 +29,14 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .inputs-container div {
   margin-bottom: 10px;
   width: 100%;
+}
+.inputs-container h1 {
+  position: absolute;
+  top: 1px;
+  right: 1px;
 }

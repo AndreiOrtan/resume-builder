@@ -19,7 +19,7 @@ export default function useWorkExperience() {
   function addExperience(fields: IWorkExperience) {
     setWorkExperience((prevExperience) => {
       const objToPush = {
-        id: `${Math.random()}`,
+        id: `${Date.now()}`,
         ...fields,
       };
       if (!prevExperience) {
@@ -38,6 +38,20 @@ export default function useWorkExperience() {
     saveWorkExperience(newExperiences);
     setWorkExperience(newExperiences);
   }
+  function updateExperience(id: string, field: Partial<IUseWorkExperience>) {
+    const experienceToUpdate = {
+      ...workExperience.filter((exp) => exp.id === id)[0],
+      ...field,
+    };
+    setWorkExperience((prevExp) => {
+      const updatedExperiences = [
+        ...prevExp.filter((exp) => exp.id !== id),
+        experienceToUpdate,
+      ];
+      saveWorkExperience(updatedExperiences);
+      return updatedExperiences;
+    });
+  }
 
-  return { addExperience, workExperience, deleteExperience };
+  return { addExperience, workExperience, deleteExperience, updateExperience };
 }

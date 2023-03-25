@@ -31,6 +31,7 @@ export default function useWorkExperience() {
       return newExperiences;
     });
   }
+
   function deleteExperience(id: string) {
     const newExperiences = workExperience.filter((experience) => {
       return experience.id !== id;
@@ -38,19 +39,16 @@ export default function useWorkExperience() {
     saveWorkExperience(newExperiences);
     setWorkExperience(newExperiences);
   }
-  function updateExperience(id: string, field: Partial<IUseWorkExperience>) {
-    const experienceToUpdate = {
-      ...workExperience.filter((exp) => exp.id === id)[0],
-      ...field,
-    };
-    setWorkExperience((prevExp) => {
-      const updatedExperiences = [
-        ...prevExp.filter((exp) => exp.id !== id),
-        experienceToUpdate,
-      ];
-      saveWorkExperience(updatedExperiences);
-      return updatedExperiences;
+  function updateExperience(field: Partial<IUseWorkExperience>, ind: number) {
+    const updatedExperiences = workExperience.map((exp, i) => {
+      if (ind === i) {
+        return { ...exp, ...field };
+      } else {
+        return exp;
+      }
     });
+    saveWorkExperience(updatedExperiences);
+    setWorkExperience(updatedExperiences);
   }
 
   return { addExperience, workExperience, deleteExperience, updateExperience };

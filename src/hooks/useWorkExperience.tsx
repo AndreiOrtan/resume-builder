@@ -2,22 +2,18 @@ import {
   saveWorkExperience,
   getWorkExperience,
 } from "@/services/experience-api";
-import { IWorkExperience } from "@/types";
-import { useState } from "react";
-
-interface IUseWorkExperience {
-  id: string;
-  company: string;
-  jobTitle: string;
-}
+import { WorkExperience, ExperienceFields } from "@/types";
+import { useEffect, useState } from "react";
 
 export default function useWorkExperience() {
-  const [workExperience, setWorkExperience] = useState<IUseWorkExperience[]>(
+  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>(
     getWorkExperience()
   );
+  console.log("ran?");
+  console.log(workExperiences, getWorkExperience());
 
-  function addExperience(fields: IWorkExperience) {
-    setWorkExperience((prevExperience) => {
+  function addExperience(fields: ExperienceFields) {
+    setWorkExperiences((prevExperience) => {
       const objToPush = {
         id: `${Date.now()}`,
         ...fields,
@@ -26,6 +22,7 @@ export default function useWorkExperience() {
         saveWorkExperience([objToPush]);
         return [objToPush];
       }
+      console.log("ran ddddd");
       const newExperiences = [...prevExperience, objToPush];
       saveWorkExperience(newExperiences);
       return newExperiences;
@@ -33,14 +30,15 @@ export default function useWorkExperience() {
   }
 
   function deleteExperience(id: string) {
-    const newExperiences = workExperience.filter((experience) => {
+    const newExperiences = workExperiences.filter((experience) => {
       return experience.id !== id;
     });
+
     saveWorkExperience(newExperiences);
-    setWorkExperience(newExperiences);
+    setWorkExperiences(newExperiences);
   }
-  function updateExperience(field: Partial<IUseWorkExperience>, ind: number) {
-    const updatedExperiences = workExperience.map((exp, i) => {
+  function updateExperience(field: Partial<WorkExperience>, ind: number) {
+    const updatedExperiences = workExperiences.map((exp, i) => {
       if (ind === i) {
         return { ...exp, ...field };
       } else {
@@ -48,8 +46,8 @@ export default function useWorkExperience() {
       }
     });
     saveWorkExperience(updatedExperiences);
-    setWorkExperience(updatedExperiences);
+    setWorkExperiences(updatedExperiences);
   }
 
-  return { addExperience, workExperience, deleteExperience, updateExperience };
+  return { addExperience, workExperiences, deleteExperience, updateExperience };
 }

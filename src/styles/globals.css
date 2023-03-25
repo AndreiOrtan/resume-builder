@@ -19,11 +19,6 @@ a {
   cursor: pointer; */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
 .inputs-container {
   display: flex;
   flex-direction: column;
@@ -32,11 +27,6 @@ a {
   position: relative;
 }
 .inputs-container div {
-  margin-bottom: 10px;
+  margin-bottom: 1px;
   width: 100%;
-}
-.inputs-container h1 {
-  position: absolute;
-  top: 1px;
-  right: 1px;
 }

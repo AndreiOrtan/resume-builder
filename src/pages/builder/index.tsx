@@ -14,16 +14,23 @@ import {
   Typography,
 } from "@mui/material";
 import WorkExperience from "@/components/FormPages/WorkExperience";
+import useWorkExperience from "@/hooks/useWorkExperience";
 
 const steps = ["Contact", "Education", "Work Experience"];
 
 export default function UserInputs() {
   const { updateField, data } = useContext(DataContext);
-
+  const { workExperiences, deleteExperience, addExperience, updateExperience } =
+    useWorkExperience();
   const { page, goNext, goBack, indexPage, reset } = useFormData([
     <ContactForm updateField={updateField} data={data} />,
     <Education updateField={updateField} data={data} />,
-    <WorkExperience />,
+    <WorkExperience
+      workExperiences={workExperiences}
+      deleteExperience={deleteExperience}
+      addExperience={addExperience}
+      updateExperience={updateExperience}
+    />,
   ]);
 
   return (
@@ -77,7 +84,7 @@ export default function UserInputs() {
       </div>
 
       <div className="resume-half">
-        <Resume />
+        <Resume workExperiences={workExperiences} />
       </div>
     </div>
   );

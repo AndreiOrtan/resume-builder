@@ -1,5 +1,5 @@
 import { createContext, FC, ReactNode, useState } from "react";
-import { FormData, FormPages, IWorkExperience } from "@/types";
+import { FormData, FormPages } from "@/types";
 
 interface IDataContext {
   updateField: (fields: {}) => void;
@@ -9,7 +9,6 @@ const DEFAULT_DATA = {
   lastName: "",
   firstName: "",
   university: "",
-  workExperience: [{ company: "", jobTitle: "" }],
 };
 const defaultValues = {
   updateField: () => {},

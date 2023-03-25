@@ -1,8 +1,13 @@
 import { DataContext } from "@/context/DataContext";
 import { useContext } from "react";
 import { FormData } from "@/types";
+import { WorkExperience } from "@/types";
 
-export default function Resume() {
+export default function Resume({
+  workExperiences,
+}: {
+  workExperiences: WorkExperience[];
+}) {
   const { data } = useContext(DataContext);
 
   return (
@@ -14,7 +19,7 @@ export default function Resume() {
       Education - {data.university}
       <br />
       Work Experience -{" "}
-      {data.workExperience.map((experience, i) => {
+      {workExperiences.map((experience, i) => {
         return (
           <div key={i}>
             {experience.company}

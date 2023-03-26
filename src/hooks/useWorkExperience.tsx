@@ -9,8 +9,6 @@ export default function useWorkExperience() {
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>(
     getWorkExperience()
   );
-  console.log("ran?");
-  console.log(workExperiences, getWorkExperience());
 
   function addExperience(fields: ExperienceFields) {
     setWorkExperiences((prevExperience) => {
@@ -22,7 +20,6 @@ export default function useWorkExperience() {
         saveWorkExperience([objToPush]);
         return [objToPush];
       }
-      console.log("ran ddddd");
       const newExperiences = [...prevExperience, objToPush];
       saveWorkExperience(newExperiences);
       return newExperiences;
@@ -33,10 +30,10 @@ export default function useWorkExperience() {
     const newExperiences = workExperiences.filter((experience) => {
       return experience.id !== id;
     });
-
     saveWorkExperience(newExperiences);
     setWorkExperiences(newExperiences);
   }
+
   function updateExperience(field: Partial<WorkExperience>, ind: number) {
     const updatedExperiences = workExperiences.map((exp, i) => {
       if (ind === i) {

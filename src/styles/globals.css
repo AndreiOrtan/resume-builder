@@ -26,7 +26,10 @@ a {
   align-items: center;
   position: relative;
 }
+
+input {
+  background-color: #dee2e8 !important;
+}
 .inputs-container div {
-  margin-bottom: 1px;
   width: 100%;
 }

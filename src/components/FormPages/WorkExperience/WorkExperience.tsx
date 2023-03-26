@@ -15,6 +15,7 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { WorkExperienceComponent } from "@/types";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 export default function WorkExperience({
   addExperience,
@@ -23,10 +24,13 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
-  //   const { workExperience, deleteExperience, addExperience, updateExperience } =
-  //     useWorkExperience();
+  console.log(workExperiences, expandedIndex, workExperiences.length);
+  function handleAddClick(index: number) {
+    addExperience({ company: "", jobTitle: "" });
+    setExpandedIndex(index);
+  }
 
-  const handleClick = (nextIndex: number) => {
+  function handleClick(nextIndex: number) {
     setExpandedIndex((currentExpandedIndex) => {
       if (currentExpandedIndex === nextIndex) {
         return -1;
@@ -34,17 +38,10 @@ export default function WorkExperience({
         return nextIndex;
       }
     });
-  };
+  }
 
   return (
     <div className="inputs-container">
-      <Button
-        variant="contained"
-        onClick={() => addExperience({ company: "", jobTitle: "" })}
-      >
-        Add work place
-      </Button>
-
       <div className="experience-container">
         {workExperiences.map((experience, index) => {
           const isExpanded = index === expandedIndex;
@@ -52,11 +49,12 @@ export default function WorkExperience({
             <Box
               key={experience.id}
               sx={{
-                width: 50,
+                // width: 50,
                 minHeight: "min-content",
                 position: "relative",
                 border: "0.5px solid #D8D8D8",
                 borderRadius: 2,
+                mb: 3,
               }}
             >
               <List
@@ -72,7 +70,7 @@ export default function WorkExperience({
                   sx={{ margin: 0 }}
                 >
                   <ListItemText
-                    sx={{ margin: 0 }}
+                    sx={{ margin: 0, width: "100%" }}
                     primary={
                       <div>
                         <Typography
@@ -104,10 +102,11 @@ export default function WorkExperience({
                   </span>
                 </ListItemButton>
                 <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
+                  <List component="nav" disablePadding>
                     <TextField
                       label="Company"
                       variant="outlined"
+                      sx={{ width: "100%", mb: 1.5 }}
                       value={experience.company}
                       onChange={(e) =>
                         updateExperience(
@@ -121,6 +120,7 @@ export default function WorkExperience({
                     <TextField
                       label="Job title"
                       variant="outlined"
+                      sx={{ width: "100%" }}
                       value={experience.jobTitle}
                       onChange={(e) =>
                         updateExperience(
@@ -138,6 +138,15 @@ export default function WorkExperience({
           );
         })}
       </div>
+      <Button
+        // variant="contained"
+        size="small"
+        startIcon={<AddCircleOutlineOutlinedIcon />}
+        onClick={() => handleAddClick(workExperiences.length)}
+        sx={{ mr: "auto", border: "0.5px solid gray", color: "#4A4A50" }}
+      >
+        Add employment
+      </Button>
     </div>
   );
 }

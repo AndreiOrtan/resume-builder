@@ -11,6 +11,7 @@ export default function ContactForm({ updateField, data }: FormPages) {
         value={data.firstName}
         onChange={(e) => updateField({ firstName: e.target.value })}
         sx={{ width: "100%", mb: 2 }}
+        // required
       />
       <TextField
         label="Last Name"

@@ -24,7 +24,7 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
-  console.log(workExperiences, expandedIndex, workExperiences.length);
+
   function handleAddClick(index: number) {
     addExperience({ company: "", jobTitle: "" });
     setExpandedIndex(index);
@@ -42,107 +42,112 @@ export default function WorkExperience({
 
   return (
     <div className="inputs-container">
-      <div className="experience-container">
-        {workExperiences.map((experience, index) => {
-          const isExpanded = index === expandedIndex;
-          return (
-            <Box
-              key={experience.id}
-              sx={{
-                // width: 50,
-                minHeight: "min-content",
-                position: "relative",
-                border: "0.5px solid #D8D8D8",
-                borderRadius: 2,
-                mb: 3,
-              }}
-            >
-              <List
+      {workExperiences && (
+        <div className="experience-container">
+          {workExperiences.map((experience, index) => {
+            const isExpanded = index === expandedIndex;
+            return (
+              <Box
+                key={experience.id}
                 sx={{
-                  width: "100%",
-                  padding: 0,
-                  margin: 0,
+                  // width: 50,
+                  minHeight: "min-content",
+                  position: "relative",
+                  border: "0.5px solid #D8D8D8",
+                  borderRadius: 2,
+                  mb: 3,
                 }}
-                component="nav"
               >
-                <ListItemButton
-                  onClick={() => handleClick(index)}
-                  sx={{ margin: 0 }}
+                <List
+                  sx={{
+                    width: "100%",
+                    padding: 0,
+                    margin: 0,
+                  }}
+                  component="nav"
                 >
-                  <ListItemText
-                    sx={{ margin: 0, width: "100%" }}
-                    primary={
-                      <div>
-                        <Typography
-                          sx={{ color: experience.company ? "" : "gray" }}
-                        >
-                          {experience.company
-                            ? experience.company
-                            : "Company name"}
-                        </Typography>
-                        <br />
-                        <Typography
-                          sx={{ color: experience.jobTitle ? "" : "gray" }}
-                        >
-                          {experience.jobTitle
-                            ? experience.jobTitle
-                            : "Job title"}
-                        </Typography>
-                      </div>
-                    }
-                  />
-                  <span className={styles.tools}>
-                    {isExpanded ? <ExpandLess /> : <ExpandMore />}
-                    <Link
-                      href=""
-                      onClick={() => deleteExperience(experience.id)}
-                    >
-                      <DeleteOutlineOutlinedIcon />
-                    </Link>
-                  </span>
-                </ListItemButton>
-                <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                  <List component="nav" disablePadding>
-                    <TextField
-                      label="Company"
-                      variant="outlined"
-                      sx={{ width: "100%", mb: 1.5 }}
-                      value={experience.company}
-                      onChange={(e) =>
-                        updateExperience(
-                          {
-                            company: e.target.value,
-                          },
-                          index
-                        )
+                  <ListItemButton
+                    onClick={() => handleClick(index)}
+                    sx={{ margin: 0 }}
+                  >
+                    <ListItemText
+                      sx={{ margin: 0, width: "100%" }}
+                      primary={
+                        <div>
+                          <Typography
+                            sx={{ color: experience.company ? "" : "gray" }}
+                          >
+                            {experience.company
+                              ? experience.company
+                              : "Company name"}
+                          </Typography>
+                          <br />
+                          <Typography
+                            sx={{ color: experience.jobTitle ? "" : "gray" }}
+                          >
+                            {experience.jobTitle
+                              ? experience.jobTitle
+                              : "Job title"}
+                          </Typography>
+                        </div>
                       }
                     />
-                    <TextField
-                      label="Job title"
-                      variant="outlined"
-                      sx={{ width: "100%" }}
-                      value={experience.jobTitle}
-                      onChange={(e) =>
-                        updateExperience(
-                          {
-                            jobTitle: e.target.value,
-                          },
-                          index
-                        )
-                      }
-                    />
-                  </List>
-                </Collapse>
-              </List>
-            </Box>
-          );
-        })}
-      </div>
+                    <span className={styles.tools}>
+                      {isExpanded ? <ExpandLess /> : <ExpandMore />}
+                      <Link
+                        href=""
+                        onClick={() => deleteExperience(experience.id)}
+                      >
+                        <DeleteOutlineOutlinedIcon />
+                      </Link>
+                    </span>
+                  </ListItemButton>
+                  <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+                    <List component="nav" disablePadding>
+                      <TextField
+                        label="Company"
+                        variant="outlined"
+                        sx={{ width: "100%", mb: 1.5 }}
+                        value={experience.company}
+                        onChange={(e) =>
+                          updateExperience(
+                            {
+                              company: e.target.value,
+                            },
+                            index
+                          )
+                        }
+                      />
+                      <TextField
+                        label="Job title"
+                        variant="outlined"
+                        sx={{ width: "100%" }}
+                        value={experience.jobTitle}
+                        onChange={(e) =>
+                          updateExperience(
+                            {
+                              jobTitle: e.target.value,
+                            },
+                            index
+                          )
+                        }
+                      />
+                    </List>
+                  </Collapse>
+                </List>
+              </Box>
+            );
+          })}
+        </div>
+      )}
+
       <Button
         // variant="contained"
         size="small"
         startIcon={<AddCircleOutlineOutlinedIcon />}
-        onClick={() => handleAddClick(workExperiences.length)}
+        onClick={() =>
+          handleAddClick(workExperiences ? workExperiences.length : 0)
+        }
         sx={{ mr: "auto", border: "0.5px solid gray", color: "#4A4A50" }}
       >
         Add employment

@@ -19,18 +19,18 @@ a {
   cursor: pointer; */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
 .inputs-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+input {
+  background-color: #dee2e8 !important;
 }
 .inputs-container div {
-  margin-bottom: 10px;
   width: 100%;
+  /* margin-bottom: 10px; */
 }

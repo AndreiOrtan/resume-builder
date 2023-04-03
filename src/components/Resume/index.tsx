@@ -1,31 +1,36 @@
 import { DataContext } from "@/context/DataContext";
 import { useContext } from "react";
-import { FormData } from "@/types";
+import { WorkExperience } from "@/types";
+import { Card } from "@mui/material";
+import styles from "./Resume.module.css";
 
-export default function Resume() {
+export default function Resume({
+  workExperiences,
+}: {
+  workExperiences: WorkExperience[];
+}) {
   const { data } = useContext(DataContext);
-  console.log(Object.keys(data));
-  console.log(data);
-  const renderedData = Object.keys(data).map((field) => {
-    return "<h1 key={field}>{data[field as keyof FormData]}</h1>";
-  });
+
   return (
-    <div className="resume">
-      First Name - {data.firstName}
+    <Card sx={{ width: 420, height: 550 }}>
+      <div className={styles.resumeHeader}>dasddasdsa</div>
+    </Card>
+  );
+  {
+    /* First Name - {data.firstName}
       <br />
       Last Name - {data.lastName}
       <br />
       Education - {data.university}
       <br />
       Work Experience -{" "}
-      {data.workExperience.map((experience, i) => {
+      {workExperiences.map((experience, i) => {
         return (
           <div key={i}>
             {experience.company}
             {experience.jobTitle}
           </div>
         );
-      })}
-    </div>
-  );
+      })} */
+  }
 }

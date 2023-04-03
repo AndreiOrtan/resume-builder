@@ -1,0 +1,11 @@
+.resume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resumeHeader {
+  height: 100px;
+  background-color: #323b4c;
+  color: white;
+}

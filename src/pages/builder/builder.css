@@ -2,7 +2,8 @@
   min-width: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  margin-top: 10px;
 }
 .resume-half {
   width: 50%;
@@ -14,5 +15,11 @@
   display: flex;
 }
 .form-half form {
-  width: 80%;
+  width: 60%;
+}
+
+.resume-half {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

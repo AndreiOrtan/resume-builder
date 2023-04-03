@@ -17,3 +17,9 @@
 .form-half form {
   width: 60%;
 }
+
+.resume-half {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

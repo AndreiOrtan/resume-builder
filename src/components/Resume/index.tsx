@@ -1,7 +1,8 @@
 import { DataContext } from "@/context/DataContext";
 import { useContext } from "react";
-import { FormData } from "@/types";
 import { WorkExperience } from "@/types";
+import { Card } from "@mui/material";
+import styles from "./Resume.module.css";
 
 export default function Resume({
   workExperiences,
@@ -11,8 +12,12 @@ export default function Resume({
   const { data } = useContext(DataContext);
 
   return (
-    <div className="resume">
-      First Name - {data.firstName}
+    <Card sx={{ width: 420, height: 550 }}>
+      <div className={styles.resumeHeader}>dasddasdsa</div>
+    </Card>
+  );
+  {
+    /* First Name - {data.firstName}
       <br />
       Last Name - {data.lastName}
       <br />
@@ -26,7 +31,6 @@ export default function Resume({
             {experience.jobTitle}
           </div>
         );
-      })}
-    </div>
-  );
+      })} */
+  }
 }

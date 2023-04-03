@@ -145,7 +145,9 @@ export default function WorkExperience({
         // variant="contained"
         size="small"
         startIcon={<AddCircleOutlineOutlinedIcon />}
-        onClick={() => handleAddClick(workExperiences.length)}
+        onClick={() =>
+          handleAddClick(workExperiences ? workExperiences.length : 0)
+        }
         sx={{ mr: "auto", border: "0.5px solid gray", color: "#4A4A50" }}
       >
         Add employment

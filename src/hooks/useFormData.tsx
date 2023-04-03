@@ -5,8 +5,9 @@ export default function useFormData(pages: ReactElement[]) {
   const [indexPage, setIndexPage] = useState<number>(0);
 
   useEffect(() => {
+    console.log(getFormIndexPage());
     if (!getFormIndexPage()) return;
-    setIndexPage(getFormIndexPage());
+    setIndexPage(parseInt(getFormIndexPage()));
   }, []);
 
   function goNext() {

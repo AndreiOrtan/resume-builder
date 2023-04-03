@@ -6,19 +6,13 @@ export default function ContactForm({ updateField, data }: FormPages) {
   return (
     <div className={styles.contactForm}>
       <TextField
-        label="First Name"
+        label="Name"
         variant="outlined"
+        placeholder="John Doe"
         value={data.firstName}
         onChange={(e) => updateField({ firstName: e.target.value })}
         sx={{ width: "100%", mb: 2 }}
-        // required
-      />
-      <TextField
-        label="Last Name"
-        variant="outlined"
-        value={data.lastName}
-        onChange={(e) => updateField({ lastName: e.target.value })}
-        sx={{ width: "100%" }}
+        required
       />
     </div>
   );

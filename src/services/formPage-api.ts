@@ -5,11 +5,9 @@ export const getFormIndexPage = () => {
     const stringifiedValue = localStorage.getItem(PAGE_INDEX_KEY);
 
     if (stringifiedValue) {
-      console.log("ran from try block", stringifiedValue);
       return JSON.parse(stringifiedValue);
     }
   } catch (error) {
-    console.log("ran from catch block");
     return [];
   }
 };

@@ -6,9 +6,13 @@ interface IDataContext {
   data: FormData;
 }
 const DEFAULT_DATA = {
-  lastName: "",
-  firstName: "",
+  fullName: "",
+  profession: "",
   university: "",
+  city: "",
+  country: "",
+  email: "",
+  phone: "",
 };
 const defaultValues = {
   updateField: () => {},

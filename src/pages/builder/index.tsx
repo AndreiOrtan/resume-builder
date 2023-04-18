@@ -16,7 +16,7 @@ import {
 import WorkExperience from "@/components/FormPages/WorkExperience";
 import useWorkExperience from "@/hooks/useWorkExperience";
 
-const steps = ["Contact", "Education", "Work Experience"];
+const steps = ["Contact", "Education", "Work Experience", "maibai"];
 
 export default function UserInputs() {
   const { updateField, data } = useContext(DataContext);

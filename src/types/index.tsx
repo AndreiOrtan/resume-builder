@@ -4,9 +4,13 @@ export interface ExperienceFields {
 }
 
 export interface FormData {
-  lastName: string;
-  firstName: string;
+  fullName: string;
+  profession: string;
   university: string;
+  city: string;
+  country: string;
+  email: string;
+  phone: string;
 }
 
 export interface FormPages {

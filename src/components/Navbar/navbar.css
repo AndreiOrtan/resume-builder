@@ -1,7 +1,7 @@
 .main-navbar {
   height: 40px;
   border-bottom: 1px solid gray;
-  background-color: rgb(10, 10, 83);
+  background-color: #1876d1;
   color: white;
   display: flex;
 }

@@ -29,6 +29,7 @@ a {
 
 input {
   background-color: #dee2e8 !important;
+  height: 15px !important;
 }
 .inputs-container div {
   width: 100%;

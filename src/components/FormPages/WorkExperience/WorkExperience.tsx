@@ -16,6 +16,9 @@ import { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { WorkExperienceComponent } from "@/types";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
 
 export default function WorkExperience({
   addExperience,
@@ -24,9 +27,11 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
+  // const [dateV, setDateV] = useState<Dayjs | null>(dayjs("2023-04-17"));
+  console.log(workExperiences);
 
   function handleAddClick(index: number) {
-    addExperience({ company: "", jobTitle: "" });
+    addExperience({ company: "", jobTitle: "", date: dayjs("2023-04-17") });
     setExpandedIndex(index);
   }
 
@@ -133,6 +138,18 @@ export default function WorkExperience({
                         }
                       />
                     </List>
+                    <section className={styles.dates}>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                          label={"Select a starting date"}
+                          views={["month", "year"]}
+                          value={experience.date}
+                          onChange={(newValue) =>
+                            updateExperience({ date: newValue }, index)
+                          }
+                        />
+                      </LocalizationProvider>
+                    </section>
                   </Collapse>
                 </List>
               </Box>

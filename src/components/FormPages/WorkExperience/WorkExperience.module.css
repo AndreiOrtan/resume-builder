@@ -18,3 +18,7 @@
 .headersGray {
   color: #888888;
 }
+.dates {
+  display: flex;
+  margin-top: 1.5em;
+}

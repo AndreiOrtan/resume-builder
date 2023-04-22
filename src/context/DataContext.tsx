@@ -1,10 +1,6 @@
 import { createContext, FC, ReactNode, useState } from "react";
 import { FormData, FormPages } from "@/types";
 
-interface IDataContext {
-  updateField: (fields: {}) => void;
-  data: FormData;
-}
 const DEFAULT_DATA = {
   fullName: "",
   profession: "",
@@ -13,6 +9,7 @@ const DEFAULT_DATA = {
   country: "",
   email: "",
   phone: "",
+  description: "",
 };
 const defaultValues = {
   updateField: () => {},

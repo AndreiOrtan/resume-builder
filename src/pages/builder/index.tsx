@@ -15,8 +15,9 @@ import {
 } from "@mui/material";
 import WorkExperience from "@/components/FormPages/WorkExperience";
 import useWorkExperience from "@/hooks/useWorkExperience";
+import About from "@/components/FormPages/About";
 
-const steps = ["Contact", "Education", "Work Experience", "maibai"];
+const steps = ["Contact", "About", "Education", "Work Experience"];
 
 export default function UserInputs() {
   const { updateField, data } = useContext(DataContext);
@@ -24,6 +25,7 @@ export default function UserInputs() {
     useWorkExperience();
   const { page, goNext, goBack, indexPage, reset } = useFormData([
     <ContactForm updateField={updateField} data={data} />,
+    <About data={data} updateField={updateField} />,
     <Education updateField={updateField} data={data} />,
     <WorkExperience
       workExperiences={workExperiences}
@@ -41,7 +43,6 @@ export default function UserInputs() {
   return (
     <div className="builder-container">
       <div className="form-half">
-        {/* <form> */}
         <Box sx={{ width: "70%" }} component="form" onSubmit={onSubmit}>
           <Stepper activeStep={indexPage} alternativeLabel>
             {steps.map((label, index) => {
@@ -74,7 +75,6 @@ export default function UserInputs() {
             </Box>
           </>
         </Box>
-        {/* </form> */}
       </div>
 
       <div className="resume-half">

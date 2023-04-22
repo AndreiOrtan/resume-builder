@@ -14,14 +14,7 @@ export default function ContactForm({ updateField, data }: FormPages) {
         sx={{ width: "100%", mb: 2 }}
         required
       />
-      <TextField
-        label="Profession"
-        variant="outlined"
-        placeholder="e.g. Programmer"
-        value={data.profession}
-        onChange={(e) => updateField({ profession: e.target.value })}
-        sx={{ width: "100%", mb: 2 }}
-      />
+
       <div className={styles.area}>
         <TextField
           label="City"

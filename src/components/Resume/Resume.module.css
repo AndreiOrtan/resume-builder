@@ -17,6 +17,7 @@
 .leftBody {
   width: 65%;
   text-align: justify;
+  text-justify: inter-word;
   padding: 5px;
   font-size: 0.7rem;
 }

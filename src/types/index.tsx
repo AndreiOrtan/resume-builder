@@ -1,6 +1,9 @@
+import { Dayjs } from "dayjs";
+
 export interface ExperienceFields {
   jobTitle: string;
   company: string;
+  date: Dayjs | null;
 }
 
 export interface FormData {
@@ -11,6 +14,7 @@ export interface FormData {
   country: string;
   email: string;
   phone: string;
+  description: string;
 }
 
 export interface FormPages {
@@ -22,6 +26,7 @@ export interface WorkExperience {
   id: string;
   company: string;
   jobTitle: string;
+  date: Dayjs | null;
 }
 
 export interface WorkExperienceComponent {

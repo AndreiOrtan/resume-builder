@@ -13,7 +13,6 @@ export default function Resume({
   workExperiences: WorkExperience[];
 }) {
   const { data } = useContext(DataContext);
-  console.log(data);
 
   return (
     <Card sx={{ width: 460, height: 600 }} className={styles.resume}>
@@ -23,10 +22,7 @@ export default function Resume({
       </div>
       <div className={styles.body}>
         <div className={styles.leftBody}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum
-          expedita sapiente nobis? Laboriosam rerum unde ex recusandae quidem
-          maiores porro sapiente dolore quis. Sit maiores rem tenetur fuga
-          corrupti repellendus?
+          <p>{data.description}</p>
         </div>
         <div className={styles.rightBody}>
           <section className={styles.contact}>

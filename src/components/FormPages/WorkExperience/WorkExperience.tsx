@@ -27,11 +27,13 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
-  // const [dateV, setDateV] = useState<Dayjs | null>(dayjs("2023-04-17"));
-  console.log(workExperiences);
 
   function handleAddClick(index: number) {
-    addExperience({ company: "", jobTitle: "", date: dayjs("2023-04-17") });
+    addExperience({
+      company: "",
+      jobTitle: "",
+      date: dayjs().set("date", 1),
+    });
     setExpandedIndex(index);
   }
 
@@ -143,7 +145,7 @@ export default function WorkExperience({
                         <DatePicker
                           label={"Select a starting date"}
                           views={["month", "year"]}
-                          value={experience.date}
+                          value={dayjs(experience.date)}
                           onChange={(newValue) =>
                             updateExperience({ date: newValue }, index)
                           }

@@ -3,7 +3,9 @@ import { Dayjs } from "dayjs";
 export interface ExperienceFields {
   jobTitle: string;
   company: string;
-  date: Dayjs | null;
+  startDate: Dayjs | null;
+  untilPresent: boolean;
+  endDate: Dayjs | null;
 }
 
 export interface FormData {
@@ -26,7 +28,9 @@ export interface WorkExperience {
   id: string;
   company: string;
   jobTitle: string;
-  date: Dayjs | null;
+  startDate: Dayjs | null;
+  untilPresent: boolean;
+  endDate: Dayjs | null;
 }
 
 export interface WorkExperienceComponent {

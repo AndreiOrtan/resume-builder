@@ -1,4 +1,3 @@
-import useWorkExperience from "@/hooks/useWorkExperience";
 import {
   Box,
   Button,
@@ -27,12 +26,14 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
-
+  console.log(workExperiences);
   function handleAddClick(index: number) {
     addExperience({
       company: "",
       jobTitle: "",
-      date: dayjs().set("date", 1),
+      startDate: dayjs().set("date", 1),
+      untilPresent: false,
+      endDate: dayjs().set("date", 1),
     });
     setExpandedIndex(index);
   }
@@ -140,15 +141,36 @@ export default function WorkExperience({
                         }
                       />
                     </List>
+                    <input
+                      type="checkbox"
+                      checked={experience.untilPresent}
+                      onChange={(e) =>
+                        updateExperience(
+                          { untilPresent: !experience.untilPresent },
+                          index
+                        )
+                      }
+                    />
+                    <label htmlFor="">Present</label>
                     <section className={styles.dates}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
-                          label={"Select a starting date"}
+                          label={"Select the starting date"}
                           views={["month", "year"]}
-                          value={dayjs(experience.date)}
+                          value={dayjs(experience.startDate)}
                           onChange={(newValue) =>
-                            updateExperience({ date: newValue }, index)
+                            updateExperience({ startDate: newValue }, index)
                           }
+                        />
+
+                        <DatePicker
+                          label={"Select the ending date"}
+                          views={["month", "year"]}
+                          value={dayjs(experience.endDate)}
+                          onChange={(newValue) =>
+                            updateExperience({ endDate: newValue }, index)
+                          }
+                          disabled={experience.untilPresent}
                         />
                       </LocalizationProvider>
                     </section>

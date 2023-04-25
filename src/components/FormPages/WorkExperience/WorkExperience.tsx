@@ -151,7 +151,7 @@ export default function WorkExperience({
                         )
                       }
                     />
-                    <label htmlFor="">Present</label>
+                    <label htmlFor="">I work here</label>
                     <section className={styles.dates}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker

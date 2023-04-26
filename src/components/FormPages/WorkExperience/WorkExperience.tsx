@@ -51,174 +51,163 @@ export default function WorkExperience({
   }
 
   return (
-    <div className="inputs-container">
-      {workExperiences && (
-        <div className="experience-container">
-          {workExperiences.map((experience, index) => {
-            const isExpanded = index === expandedIndex;
-            return (
-              <Box
-                key={experience.id}
-                sx={{
-                  // width: 50,
-                  minHeight: "min-content",
-                  position: "relative",
-                  border: "0.5px solid #D8D8D8",
-                  borderRadius: 2,
-                  mb: 3,
-                }}
-              >
-                <List
-                  sx={{
-                    width: "100%",
-                    padding: 0,
-                    margin: 0,
-                  }}
-                  component="nav"
-                >
-                  {!isExpanded && (
-                    <ListItemButton
-                      onClick={() => handleClick(index)}
-                      sx={{ margin: 0 }}
-                    >
-                      <ListItemText
-                        sx={{ margin: 0, width: "100%" }}
-                        primary={
-                          <div>
-                            <Typography
-                              sx={{ color: experience.jobTitle ? "" : "gray" }}
+    <div className="container">
+      {workExperiences &&
+        workExperiences.map((experience, index) => {
+          const isExpanded = index === expandedIndex;
+          return (
+            <Box
+              key={experience.id}
+              sx={{
+                minHeight: "min-content",
+                position: "relative",
+                border: "1px solid #D8D8D8",
+                borderRadius: 2,
+                mb: 3,
+              }}
+              component="section"
+              onClick={!isExpanded ? () => handleClick(index) : undefined}
+              className={!isExpanded ? styles.highlight : ""}
+            >
+              <div className={styles.contentWrapper}>
+                {!isExpanded && (
+                  <nav className={styles.summary}>
+                    <ListItemText
+                      sx={{ margin: 0, width: "100%" }}
+                      primary={
+                        <div>
+                          <Typography
+                            sx={{ color: experience.jobTitle ? "" : "gray" }}
+                          >
+                            {experience.jobTitle
+                              ? experience.jobTitle
+                              : "Job title"}
+                          </Typography>
+                          <br />
+                          <Typography
+                            sx={{ color: experience.company ? "" : "gray" }}
+                          >
+                            {experience.company ? (
+                              <>
+                                {experience.company}
+                                <span>
+                                  {experience.city
+                                    ? `, ${experience.city}`
+                                    : ""}
+                                </span>
+                              </>
+                            ) : (
+                              "Company name"
+                            )}
+                          </Typography>
+
+                          <span className={styles.tools}>
+                            <Link
+                              href=""
+                              onClick={() => deleteExperience(experience.id)}
+                              className={styles.deleteIcon}
                             >
-                              {experience.jobTitle
-                                ? experience.jobTitle
-                                : "Job title"}
-                            </Typography>
-                            <br />
-                            <Typography
-                              sx={{ color: experience.company ? "" : "gray" }}
-                            >
-                              {experience.company ? (
-                                <>
-                                  {experience.company}
-                                  <span>
-                                    {experience.city
-                                      ? `, ${experience.city}`
-                                      : ""}
-                                  </span>
-                                </>
-                              ) : (
-                                "Company name"
-                              )}
-                            </Typography>
+                              <DeleteOutlineOutlinedIcon
+                                sx={{ color: "black" }}
+                              />
+                            </Link>
+                          </span>
+                        </div>
+                      }
+                    />
+                  </nav>
+                )}
 
-                            <span className={styles.tools}>
-                              <Link
-                                href=""
-                                onClick={() => deleteExperience(experience.id)}
-                                className={styles.deleteIcon}
-                              >
-                                <DeleteOutlineOutlinedIcon
-                                  sx={{ color: "black" }}
-                                />
-                              </Link>
-                            </span>
-                          </div>
+                <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+                  <List component="nav" disablePadding>
+                    <TextField
+                      label="Company"
+                      variant="outlined"
+                      sx={{ width: "100%", mb: 1.5 }}
+                      value={experience.company}
+                      onChange={(e) =>
+                        updateExperience(
+                          {
+                            company: e.target.value,
+                          },
+                          index
+                        )
+                      }
+                    />
+                    <TextField
+                      label="Job title"
+                      variant="outlined"
+                      sx={{ width: "100%", mb: 1.5 }}
+                      value={experience.jobTitle}
+                      onChange={(e) =>
+                        updateExperience(
+                          {
+                            jobTitle: e.target.value,
+                          },
+                          index
+                        )
+                      }
+                    />
+                    <TextField
+                      label="City"
+                      variant="outlined"
+                      sx={{ width: "100%" }}
+                      value={experience.city}
+                      onChange={(e) =>
+                        updateExperience(
+                          {
+                            city: e.target.value,
+                          },
+                          index
+                        )
+                      }
+                    />
+                  </List>
+                  <div className={styles.checkbox}>
+                    <Checkbox
+                      checked={experience.untilPresent}
+                      onChange={(e) =>
+                        updateExperience(
+                          { untilPresent: !experience.untilPresent },
+                          index
+                        )
+                      }
+                    />
+                    <label>I work here</label>
+                  </div>
+                  <section className={styles.dates}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        label={"Select the starting date"}
+                        views={["month", "year"]}
+                        value={dayjs(experience.startDate)}
+                        onChange={(newValue) =>
+                          updateExperience({ startDate: newValue }, index)
                         }
                       />
-                    </ListItemButton>
-                  )}
 
-                  <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                    <List component="nav" disablePadding>
-                      <TextField
-                        label="Company"
-                        variant="outlined"
-                        sx={{ width: "100%", mb: 1.5 }}
-                        value={experience.company}
-                        onChange={(e) =>
-                          updateExperience(
-                            {
-                              company: e.target.value,
-                            },
-                            index
-                          )
+                      <DatePicker
+                        label={"Select the ending date"}
+                        views={["month", "year"]}
+                        value={dayjs(experience.endDate)}
+                        onChange={(newValue) =>
+                          updateExperience({ endDate: newValue }, index)
                         }
+                        disabled={experience.untilPresent}
                       />
-                      <TextField
-                        label="Job title"
-                        variant="outlined"
-                        sx={{ width: "100%", mb: 1.5 }}
-                        value={experience.jobTitle}
-                        onChange={(e) =>
-                          updateExperience(
-                            {
-                              jobTitle: e.target.value,
-                            },
-                            index
-                          )
-                        }
-                      />
-                      <TextField
-                        label="City"
-                        variant="outlined"
-                        sx={{ width: "100%" }}
-                        value={experience.city}
-                        onChange={(e) =>
-                          updateExperience(
-                            {
-                              city: e.target.value,
-                            },
-                            index
-                          )
-                        }
-                      />
-                    </List>
-                    <div className={styles.checkbox}>
-                      <Checkbox
-                        checked={experience.untilPresent}
-                        onChange={(e) =>
-                          updateExperience(
-                            { untilPresent: !experience.untilPresent },
-                            index
-                          )
-                        }
-                      />
-                      <label>I work here</label>
-                    </div>
-                    <section className={styles.dates}>
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                          label={"Select the starting date"}
-                          views={["month", "year"]}
-                          value={dayjs(experience.startDate)}
-                          onChange={(newValue) =>
-                            updateExperience({ startDate: newValue }, index)
-                          }
-                        />
-
-                        <DatePicker
-                          label={"Select the ending date"}
-                          views={["month", "year"]}
-                          value={dayjs(experience.endDate)}
-                          onChange={(newValue) =>
-                            updateExperience({ endDate: newValue }, index)
-                          }
-                          disabled={experience.untilPresent}
-                        />
-                      </LocalizationProvider>
-                    </section>
-                    <Button
-                      variant="contained"
-                      onClick={() => handleClick(index)}
-                    >
-                      Done
-                    </Button>
-                  </Collapse>
-                </List>
-              </Box>
-            );
-          })}
-        </div>
-      )}
+                    </LocalizationProvider>
+                  </section>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleClick(index)}
+                  >
+                    Done
+                  </Button>
+                </Collapse>
+              </div>
+            </Box>
+          );
+        })}
 
       <Button
         // variant="contained"

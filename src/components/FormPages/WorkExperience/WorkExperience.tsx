@@ -18,6 +18,7 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
+import Checkbox from "@mui/material/Checkbox";
 
 export default function WorkExperience({
   addExperience,
@@ -26,14 +27,15 @@ export default function WorkExperience({
   workExperiences,
 }: WorkExperienceComponent) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
-  console.log(workExperiences);
+
   function handleAddClick(index: number) {
     addExperience({
       company: "",
       jobTitle: "",
-      startDate: dayjs().set("date", 1),
+      startDate: String(dayjs().set("date", 1)),
       untilPresent: false,
-      endDate: dayjs().set("date", 1),
+      endDate: String(dayjs().set("date", 1)),
+      city: "",
     });
     setExpandedIndex(index);
   }
@@ -74,42 +76,57 @@ export default function WorkExperience({
                   }}
                   component="nav"
                 >
-                  <ListItemButton
-                    onClick={() => handleClick(index)}
-                    sx={{ margin: 0 }}
-                  >
-                    <ListItemText
-                      sx={{ margin: 0, width: "100%" }}
-                      primary={
-                        <div>
-                          <Typography
-                            sx={{ color: experience.company ? "" : "gray" }}
-                          >
-                            {experience.company
-                              ? experience.company
-                              : "Company name"}
-                          </Typography>
-                          <br />
-                          <Typography
-                            sx={{ color: experience.jobTitle ? "" : "gray" }}
-                          >
-                            {experience.jobTitle
-                              ? experience.jobTitle
-                              : "Job title"}
-                          </Typography>
-                        </div>
-                      }
-                    />
-                    <span className={styles.tools}>
-                      {isExpanded ? <ExpandLess /> : <ExpandMore />}
-                      <Link
-                        href=""
-                        onClick={() => deleteExperience(experience.id)}
-                      >
-                        <DeleteOutlineOutlinedIcon />
-                      </Link>
-                    </span>
-                  </ListItemButton>
+                  {!isExpanded && (
+                    <ListItemButton
+                      onClick={() => handleClick(index)}
+                      sx={{ margin: 0 }}
+                    >
+                      <ListItemText
+                        sx={{ margin: 0, width: "100%" }}
+                        primary={
+                          <div>
+                            <Typography
+                              sx={{ color: experience.jobTitle ? "" : "gray" }}
+                            >
+                              {experience.jobTitle
+                                ? experience.jobTitle
+                                : "Job title"}
+                            </Typography>
+                            <br />
+                            <Typography
+                              sx={{ color: experience.company ? "" : "gray" }}
+                            >
+                              {experience.company ? (
+                                <>
+                                  {experience.company}
+                                  <span>
+                                    {experience.city
+                                      ? `, ${experience.city}`
+                                      : ""}
+                                  </span>
+                                </>
+                              ) : (
+                                "Company name"
+                              )}
+                            </Typography>
+
+                            <span className={styles.tools}>
+                              <Link
+                                href=""
+                                onClick={() => deleteExperience(experience.id)}
+                                className={styles.deleteIcon}
+                              >
+                                <DeleteOutlineOutlinedIcon
+                                  sx={{ color: "black" }}
+                                />
+                              </Link>
+                            </span>
+                          </div>
+                        }
+                      />
+                    </ListItemButton>
+                  )}
+
                   <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                     <List component="nav" disablePadding>
                       <TextField
@@ -129,7 +146,7 @@ export default function WorkExperience({
                       <TextField
                         label="Job title"
                         variant="outlined"
-                        sx={{ width: "100%" }}
+                        sx={{ width: "100%", mb: 1.5 }}
                         value={experience.jobTitle}
                         onChange={(e) =>
                           updateExperience(
@@ -140,18 +157,33 @@ export default function WorkExperience({
                           )
                         }
                       />
+                      <TextField
+                        label="City"
+                        variant="outlined"
+                        sx={{ width: "100%" }}
+                        value={experience.city}
+                        onChange={(e) =>
+                          updateExperience(
+                            {
+                              city: e.target.value,
+                            },
+                            index
+                          )
+                        }
+                      />
                     </List>
-                    <input
-                      type="checkbox"
-                      checked={experience.untilPresent}
-                      onChange={(e) =>
-                        updateExperience(
-                          { untilPresent: !experience.untilPresent },
-                          index
-                        )
-                      }
-                    />
-                    <label htmlFor="">I work here</label>
+                    <div className={styles.checkbox}>
+                      <Checkbox
+                        checked={experience.untilPresent}
+                        onChange={(e) =>
+                          updateExperience(
+                            { untilPresent: !experience.untilPresent },
+                            index
+                          )
+                        }
+                      />
+                      <label>I work here</label>
+                    </div>
                     <section className={styles.dates}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
@@ -174,6 +206,12 @@ export default function WorkExperience({
                         />
                       </LocalizationProvider>
                     </section>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleClick(index)}
+                    >
+                      Done
+                    </Button>
                   </Collapse>
                 </List>
               </Box>

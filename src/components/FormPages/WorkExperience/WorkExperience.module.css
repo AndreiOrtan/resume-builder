@@ -9,6 +9,7 @@
   background-color: #e7ebef;
   border-radius: 15%;
   box-shadow: 2px 2px 5px #888888;
+  z-index: 999;
 }
 
 .tools a {
@@ -21,4 +22,26 @@
 .dates {
   display: flex;
   margin-top: 1.5em;
+}
+
+.deleteIcon :hover {
+  opacity: 2.2;
+  background-color: #c7d1d8;
+  color: red;
+  /* border: 1px solid #a7b1b8; */
+  transform: scale(1.2);
+}
+
+.deleteIcon path {
+  pointer-events: none;
+}
+
+.checkbox {
+  display: flex;
+}
+
+.checkbox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

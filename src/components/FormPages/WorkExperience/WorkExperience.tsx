@@ -61,7 +61,7 @@ export default function WorkExperience({
               sx={{
                 minHeight: "min-content",
                 position: "relative",
-                border: "1px solid #D8D8D8",
+                border: "2px solid #D8D8D8",
                 borderRadius: 2,
                 mb: 3,
               }}
@@ -118,7 +118,12 @@ export default function WorkExperience({
                   </nav>
                 )}
 
-                <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+                <Collapse
+                  in={isExpanded}
+                  timeout="auto"
+                  unmountOnExit
+                  sx={{ display: "flex" }}
+                >
                   <List component="nav" disablePadding>
                     <TextField
                       label="Company"
@@ -163,17 +168,19 @@ export default function WorkExperience({
                       }
                     />
                   </List>
-                  <div className={styles.checkbox}>
-                    <Checkbox
-                      checked={experience.untilPresent}
-                      onChange={(e) =>
-                        updateExperience(
-                          { untilPresent: !experience.untilPresent },
-                          index
-                        )
-                      }
-                    />
-                    <label>I work here</label>
+                  <div className={styles.checkboxWrapper}>
+                    <div className={styles.checkbox}>
+                      <Checkbox
+                        checked={experience.untilPresent}
+                        onChange={(e) =>
+                          updateExperience(
+                            { untilPresent: !experience.untilPresent },
+                            index
+                          )
+                        }
+                      />
+                      <label>I work here</label>
+                    </div>
                   </div>
                   <section className={styles.dates}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -194,15 +201,19 @@ export default function WorkExperience({
                           updateExperience({ endDate: newValue }, index)
                         }
                         disabled={experience.untilPresent}
+                        sx={{ marginLeft: "auto" }}
                       />
                     </LocalizationProvider>
                   </section>
-                  <Button
-                    variant="contained"
-                    onClick={() => handleClick(index)}
-                  >
-                    Done
-                  </Button>
+                  <div className={styles.buttonContainer}>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleClick(index)}
+                      sx={{ marginLeft: "auto" }}
+                    >
+                      Done
+                    </Button>
+                  </div>
                 </Collapse>
               </div>
             </Box>

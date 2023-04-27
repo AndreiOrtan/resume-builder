@@ -20,13 +20,10 @@
 }
 .dates {
   display: flex;
-  margin-top: 1.5em;
 }
 
 .deleteIcon :hover {
-  opacity: 2.2;
   background-color: #e7ebef !important;
-  color: red;
   transform: scale(1.2);
   font-size: 22px;
 }
@@ -45,6 +42,12 @@
   align-items: center;
 }
 
+.checkboxWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
 .contentWrapper {
   padding: 25px;
 }
@@ -53,4 +56,8 @@
   background-color: #d6dbe2;
   cursor: pointer;
   border-radius: 8px;
+}
+.buttonContainer {
+  display: flex;
+  margin: 15px 0 0 0;
 }

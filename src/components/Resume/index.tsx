@@ -29,8 +29,6 @@ export default function Resume({
   workExperiences: WorkExperience[];
 }) {
   const { data } = useContext(DataContext);
-  console.log(dayjs("2023-04-01T09:21:07.795Z").month());
-  console.log(workExperiences);
 
   return (
     <Card sx={{ width: 460, height: 600 }} className={styles.resume}>
@@ -43,10 +41,10 @@ export default function Resume({
           <p>{data.description}</p>
           <div className="workExperience">
             <h2>Employment</h2>
-            <div className="experiencesContainer">
+            <aside className="experiencesContainer">
               {workExperiences.map((experience) => {
                 return (
-                  <div key={experience.id}>
+                  <section key={experience.id}>
                     <p>{experience.jobTitle}</p>
                     <p>{experience.company}</p>
                     <div className={styles.period}>
@@ -73,10 +71,10 @@ export default function Resume({
                         </p>
                       )}
                     </div>
-                  </div>
+                  </section>
                 );
               })}
-            </div>
+            </aside>
           </div>
         </div>
         <div className={styles.rightBody}>

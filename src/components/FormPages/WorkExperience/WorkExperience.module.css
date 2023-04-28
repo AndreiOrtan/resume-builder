@@ -20,5 +20,44 @@
 }
 .dates {
   display: flex;
-  margin-top: 1.5em;
+}
+
+.deleteIcon :hover {
+  background-color: #e7ebef !important;
+  transform: scale(1.2);
+  font-size: 22px;
+}
+
+.deleteIcon path {
+  pointer-events: none;
+}
+
+.checkbox {
+  display: flex;
+}
+
+.checkbox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkboxWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.contentWrapper {
+  padding: 25px;
+}
+
+.highlight :hover {
+  background-color: #d6dbe2;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.buttonContainer {
+  display: flex;
+  margin: 15px 0 0 0;
 }

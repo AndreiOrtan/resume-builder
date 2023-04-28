@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layouts";
 import "../components/Navbar/navbar.css";
-import "../components/Layout/HomeLayout.css";
+import "../components/Layouts/HomeLayout.css";
 import "./builder/builder.css";
 
 import { DataProvider } from "@/context/DataContext";

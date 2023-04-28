@@ -4,3 +4,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.highlight :hover {
+  background-color: #d6dbe2;
+  cursor: pointer;
+  border-radius: 8px;
+}

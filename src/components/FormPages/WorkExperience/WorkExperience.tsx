@@ -19,6 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import Checkbox from "@mui/material/Checkbox";
+import FormLayout from "@/components/Layouts/FormLayout";
 
 export default function WorkExperience({
   addExperience,
@@ -41,6 +42,7 @@ export default function WorkExperience({
   }
 
   function handleClick(nextIndex: number) {
+    console.log("clicked");
     setExpandedIndex((currentExpandedIndex) => {
       if (currentExpandedIndex === nextIndex) {
         return -1;
@@ -51,172 +53,161 @@ export default function WorkExperience({
   }
 
   return (
-    <div className="container">
+    <>
       {workExperiences &&
         workExperiences.map((experience, index) => {
           const isExpanded = index === expandedIndex;
+          console.log(isExpanded);
           return (
-            <Box
+            <FormLayout
               key={experience.id}
-              sx={{
-                minHeight: "min-content",
-                position: "relative",
-                border: "2px solid #D8D8D8",
-                borderRadius: 2,
-                mb: 3,
-              }}
-              component="section"
               onClick={!isExpanded ? () => handleClick(index) : undefined}
               className={!isExpanded ? styles.highlight : ""}
             >
-              <div className={styles.contentWrapper}>
-                {!isExpanded && (
-                  <nav className={styles.summary}>
-                    <ListItemText
-                      sx={{ margin: 0, width: "100%" }}
-                      primary={
-                        <div>
-                          <Typography
-                            sx={{ color: experience.jobTitle ? "" : "gray" }}
-                          >
-                            {experience.jobTitle
-                              ? experience.jobTitle
-                              : "Job title"}
-                          </Typography>
-                          <br />
-                          <Typography
-                            sx={{ color: experience.company ? "" : "gray" }}
-                          >
-                            {experience.company ? (
-                              <>
-                                {experience.company}
-                                <span>
-                                  {experience.city
-                                    ? `, ${experience.city}`
-                                    : ""}
-                                </span>
-                              </>
-                            ) : (
-                              "Company name"
-                            )}
-                          </Typography>
+              {!isExpanded && (
+                <nav className={styles.summary}>
+                  <ListItemText
+                    sx={{ margin: 0, width: "100%" }}
+                    primary={
+                      <div>
+                        <Typography
+                          sx={{ color: experience.jobTitle ? "" : "gray" }}
+                        >
+                          {experience.jobTitle
+                            ? experience.jobTitle
+                            : "Job title"}
+                        </Typography>
+                        <br />
+                        <Typography
+                          sx={{ color: experience.company ? "" : "gray" }}
+                        >
+                          {experience.company ? (
+                            <>
+                              {experience.company}
+                              <span>
+                                {experience.city ? `, ${experience.city}` : ""}
+                              </span>
+                            </>
+                          ) : (
+                            "Company name"
+                          )}
+                        </Typography>
 
-                          <span className={styles.tools}>
-                            <Link
-                              href=""
-                              onClick={() => deleteExperience(experience.id)}
-                              className={styles.deleteIcon}
-                            >
-                              <DeleteOutlineOutlinedIcon
-                                sx={{ color: "black" }}
-                              />
-                            </Link>
-                          </span>
-                        </div>
-                      }
-                    />
-                  </nav>
-                )}
+                        <span className={styles.tools}>
+                          <Link
+                            href=""
+                            onClick={() => deleteExperience(experience.id)}
+                            className={styles.deleteIcon}
+                          >
+                            <DeleteOutlineOutlinedIcon
+                              sx={{ color: "black" }}
+                            />
+                          </Link>
+                        </span>
+                      </div>
+                    }
+                  />
+                </nav>
+              )}
 
-                <Collapse
-                  in={isExpanded}
-                  timeout="auto"
-                  unmountOnExit
-                  sx={{ display: "flex" }}
-                >
-                  <List component="nav" disablePadding>
-                    <TextField
-                      label="Company"
-                      variant="outlined"
-                      sx={{ width: "100%", mb: 1.5 }}
-                      value={experience.company}
+              <Collapse
+                in={isExpanded}
+                timeout="auto"
+                unmountOnExit
+                sx={{ display: "flex" }}
+              >
+                <List component="nav" disablePadding>
+                  <TextField
+                    label="Company"
+                    variant="outlined"
+                    sx={{ width: "100%", mb: 1.5 }}
+                    value={experience.company}
+                    onChange={(e) =>
+                      updateExperience(
+                        {
+                          company: e.target.value,
+                        },
+                        index
+                      )
+                    }
+                  />
+                  <TextField
+                    label="Job title"
+                    variant="outlined"
+                    sx={{ width: "100%", mb: 1.5 }}
+                    value={experience.jobTitle}
+                    onChange={(e) =>
+                      updateExperience(
+                        {
+                          jobTitle: e.target.value,
+                        },
+                        index
+                      )
+                    }
+                  />
+                  <TextField
+                    label="City"
+                    variant="outlined"
+                    sx={{ width: "100%" }}
+                    value={experience.city}
+                    onChange={(e) =>
+                      updateExperience(
+                        {
+                          city: e.target.value,
+                        },
+                        index
+                      )
+                    }
+                  />
+                </List>
+                <div className={styles.checkboxWrapper}>
+                  <div className={styles.checkbox}>
+                    <Checkbox
+                      checked={experience.untilPresent}
                       onChange={(e) =>
                         updateExperience(
-                          {
-                            company: e.target.value,
-                          },
+                          { untilPresent: !experience.untilPresent },
                           index
                         )
                       }
                     />
-                    <TextField
-                      label="Job title"
-                      variant="outlined"
-                      sx={{ width: "100%", mb: 1.5 }}
-                      value={experience.jobTitle}
-                      onChange={(e) =>
-                        updateExperience(
-                          {
-                            jobTitle: e.target.value,
-                          },
-                          index
-                        )
-                      }
-                    />
-                    <TextField
-                      label="City"
-                      variant="outlined"
-                      sx={{ width: "100%" }}
-                      value={experience.city}
-                      onChange={(e) =>
-                        updateExperience(
-                          {
-                            city: e.target.value,
-                          },
-                          index
-                        )
-                      }
-                    />
-                  </List>
-                  <div className={styles.checkboxWrapper}>
-                    <div className={styles.checkbox}>
-                      <Checkbox
-                        checked={experience.untilPresent}
-                        onChange={(e) =>
-                          updateExperience(
-                            { untilPresent: !experience.untilPresent },
-                            index
-                          )
-                        }
-                      />
-                      <label>I work here</label>
-                    </div>
+                    <label>I work here</label>
                   </div>
-                  <section className={styles.dates}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DatePicker
-                        label={"Select the starting date"}
-                        views={["month", "year"]}
-                        value={dayjs(experience.startDate)}
-                        onChange={(newValue) =>
-                          updateExperience({ startDate: newValue }, index)
-                        }
-                      />
+                </div>
+                <section className={styles.dates}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      label={"Select the starting date"}
+                      views={["month", "year"]}
+                      value={dayjs(experience.startDate)}
+                      onChange={(newValue) =>
+                        updateExperience({ startDate: newValue }, index)
+                      }
+                    />
 
-                      <DatePicker
-                        label={"Select the ending date"}
-                        views={["month", "year"]}
-                        value={dayjs(experience.endDate)}
-                        onChange={(newValue) =>
-                          updateExperience({ endDate: newValue }, index)
-                        }
-                        disabled={experience.untilPresent}
-                        sx={{ marginLeft: "auto" }}
-                      />
-                    </LocalizationProvider>
-                  </section>
-                  <div className={styles.buttonContainer}>
-                    <Button
-                      variant="contained"
-                      onClick={() => handleClick(index)}
+                    <DatePicker
+                      label={"Select the ending date"}
+                      views={["month", "year"]}
+                      value={dayjs(experience.endDate)}
+                      onChange={(newValue) =>
+                        updateExperience({ endDate: newValue }, index)
+                      }
+                      disabled={experience.untilPresent}
                       sx={{ marginLeft: "auto" }}
-                    >
-                      Done
-                    </Button>
-                  </div>
-                </Collapse>
-              </div>
-            </Box>
+                    />
+                  </LocalizationProvider>
+                </section>
+                <div className={styles.buttonContainer}>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleClick(index)}
+                    sx={{ marginLeft: "auto" }}
+                  >
+                    Done
+                  </Button>
+                </div>
+              </Collapse>
+            </FormLayout>
           );
         })}
 
@@ -231,6 +222,6 @@ export default function WorkExperience({
       >
         Add employment
       </Button>
-    </div>
+    </>
   );
 }

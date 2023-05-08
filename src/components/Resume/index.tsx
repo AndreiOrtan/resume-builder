@@ -33,20 +33,22 @@ export default function Resume({
   return (
     <Card sx={{ width: 460, height: 600 }} className={styles.resume}>
       <div className={styles.resumeHeader}>
-        <h1>{data.fullName}</h1>
+        <h1 className="text-3xl font-semibold">{data.fullName}</h1>
         <p>{data.profession}</p>
       </div>
       <div className={styles.body}>
         <div className={styles.leftBody}>
           <p>{data.description}</p>
           <div className="workExperience">
-            <h2>Employment</h2>
-            <aside className="experiencesContainer">
+            <h2 className="text-xl font-medium">Employment</h2>
+            <main className={styles.experiencesContainer}>
               {workExperiences.map((experience) => {
                 return (
-                  <section key={experience.id}>
-                    <p>{experience.jobTitle}</p>
-                    <p>{experience.company}</p>
+                  <section key={experience.id} className={styles.container}>
+                    <div className="names">
+                      <p>{experience.jobTitle}</p>
+                      <p>{experience.company}</p>
+                    </div>
                     <div className={styles.period}>
                       <p>
                         {
@@ -74,12 +76,12 @@ export default function Resume({
                   </section>
                 );
               })}
-            </aside>
+            </main>
           </div>
         </div>
         <div className={styles.rightBody}>
           <section className={styles.contact}>
-            <h4>Contact</h4>
+            <h4 className="text-xl font-medium">Contact</h4>
             <div className={styles.contactData}>
               {data.email ? (
                 <div>

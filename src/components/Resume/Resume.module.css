@@ -18,7 +18,7 @@
   width: 65%;
   text-align: justify;
   text-justify: inter-word;
-  padding: 5px;
+  padding: 8px;
   font-size: 0.7rem;
 }
 .rightBody {
@@ -47,10 +47,16 @@
   margin-left: 4px;
 }
 
-/* .email {
-  display: flex;
-} */
-
 .period {
   display: flex;
+  margin-left: auto;
+}
+
+.container {
+  display: flex;
+  margin: 8px;
+}
+
+.experiencesContainer {
+  /* padding: 8px; */
 }

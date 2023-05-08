@@ -9,12 +9,6 @@ const HomeContent = () => {
       <Link href="/builder">
         <Button variant="contained">Start building your resume</Button>
       </Link>
-      {/* <TestComponent>
-        <div>
-          <p>Salut children</p>
-        </div>
-        <div>Another children</div>
-      </TestComponent> */}
     </div>
   );
 };
